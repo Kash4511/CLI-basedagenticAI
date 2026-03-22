@@ -13,6 +13,14 @@ console = Console()
 
 # ── SAFE MODE ────────────────────────────────────────────────────────────────
 SAFE_EXT = (".py", ".js", ".ts", ".html", ".css", ".json", ".md", ".txt")
+# main.py — safe() function
+def safe(path):
+    return (
+        path.endswith(SAFE_EXT)
+        and "venv" not in path
+        and ".git" not in path
+        and ".env" not in path  # stops agent touching it
+    )
 
 def safe(path):
     return path.endswith(SAFE_EXT) and "venv" not in path and ".git" not in path
