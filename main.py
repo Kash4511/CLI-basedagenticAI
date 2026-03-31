@@ -90,9 +90,13 @@ def run_file(path: str) -> str:
         return f"Error: {e}"
 
 # ── AGENT ────────────────────────────────────────────────────────────────────
+def get_groq_api():
+    return os.getenv('GROQ_API_KEY')
+
+# Ensure the GROQ_API_KEY is not hardcoded or exposed in the repository.
 llm = ChatGroq(
     model="meta-llama/llama-4-scout-17b-16e-instruct",
-    api_key=os.getenv("GROQ_API_KEY")
+    api_key=get_groq_api()
 )
 
 agent = create_react_agent(
